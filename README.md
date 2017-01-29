@@ -14,7 +14,7 @@ npm install --save bound2osmtile
 Pass the WGS84 bounds to the function:
 
 ```js
-var bound2tile = require('osmtile2bound');
+var bound2tile = require('bound2osmtile');
 
 
 console.log(bound2tile([[48.151428143221224, 11.5521240234375],
