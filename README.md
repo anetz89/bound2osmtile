@@ -1,5 +1,5 @@
 # bound2osmtile
-This package converts a passed WGS84 bounds object to OSM slippy tile request values.
+This package converts a passed WGS84 bounds object to the closest OSM slippy tile request values.
 This is done by following the suggestions in the 
 [OSM Wiki](https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames).
 
@@ -16,19 +16,26 @@ Pass the WGS84 bounds to the function:
 ```js
 var bound2tile = require('osmtile2bound');
 
-// http://c.tile.openstreetmap.org/18/139507/90949.png
-console.log(bound2tile([ [ 11.583709716796875, 48.16150547016801 ],
-   [ 11.5850830078125, 48.16150547016801 ],
-   [ 11.5850830078125, 48.1605894313262 ],
-   [ 11.583709716796875, 48.1605894313262 ] ]));
+
+console.log(bound2tile([[48.151428143221224, 11.5521240234375],
+   [48.15234434564333, 11.553497314453125]]));
 
 // output:
-// {
-//     x : 139507,
-//     y : 90949,
-//     z : 18
+// { 
+//     valid: true, 
+//     x: 69742, 
+//     y: 45479, 
+//     z: 17 
 // }
 ```
+
+### options
+You can pass additional options to control the behavior.
+
+#### zoom (default: 19)
+Zoom level the algorithm should start with. If no zoom is passed, the algorithm starts with the 
+most detailed OSM zoom level (19).
+This can be used to define a minimal zoom level that should be used.
 
 ## Further work
 - add options, to allow a different bound input (like L.LatLngBounds)
