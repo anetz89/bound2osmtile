@@ -1,0 +1,26 @@
+{
+  "name": "bound2osmtile",
+  "version": "0.1.0",
+  "description": "convert wgs84 bounds to osm sloppy tile format",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anetz89/bound2osmtile.git"
+  },
+  "keywords": [
+    "osm",
+    "tile",
+    "bound",
+    "converter",
+    "sloppy"
+  ],
+  "author": "anetz89",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anetz89/bound2osmtile/issues"
+  },
+  "homepage": "https://github.com/anetz89/bound2osmtile#readme"
+}
