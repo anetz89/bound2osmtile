@@ -1,6 +1,8 @@
 (function() {
     'use strict';
 
+    var Bound = require('./bound.js');
+
     function long2tile(lon, zoom) {
         return (Math.floor((lon + 180) / 360 * Math.pow(2, zoom)));
     }
@@ -26,11 +28,10 @@
     }
 
     function getTile(bounds, zoom) {
-        // expect bounds to be [[north, west], [south, east]]
-        var tileXmin = long2tile(bounds[0][1], zoom),  // west
-            tileXmax = long2tile(bounds[1][1], zoom),  // east
-            tileYmin = lat2tile(bounds[1][0], zoom),   // south
-            tileYmax = lat2tile(bounds[0][0], zoom);   // north
+        var tileXmin = long2tile(bounds.getWest(), zoom),
+            tileXmax = long2tile(bounds.getEast(), zoom),
+            tileYmin = lat2tile(bounds.getSouth(), zoom),
+            tileYmax = lat2tile(bounds.getNorth(), zoom);
 
         if (tileXmin === tileXmax &&
                 tileYmin === tileYmax) {
@@ -55,20 +56,20 @@
         return getCoverTile(bounds, zoom - 1);
     }
 
-    // function normalizeBounds(bounds) {
-    //     console.log(bounds);
+    function tile2Url(tile, options) {
+        let url = options.urlBase;
 
-    //     bounds[0][0] = Math.round(bounds[0][0] * 1000000 - 1) / 1000000;
-    //     bounds[0][1] = Math.round(bounds[0][1] * 1000000 + 1) / 1000000;
-    //     bounds[1][0] = Math.round(bounds[1][0] * 1000000 + 1) / 1000000;
-    //     bounds[1][1] = Math.round(bounds[1][1] * 1000000 - 1) / 1000000;
+        if (!url) {
+            url = 'http://tile.openstreetmap.org/';
+        }
+        if (!url.endsWith('/')) {
+            url += '/';
+        }
 
-    //     console.log('[north - 1, west + 1], [south + 1, east - 1]');
-    //     console.log(bounds);
-    //     return bounds;
-    // }
+        return url + [tile.z, tile.x, tile.y].join('/') + (options.fileExtension || '.png');
+    }
 
-    module.exports = function(bounds, options) {
+    module.exports = function(bound, options) {
         if (!options) {
             options = {};
         }
@@ -76,8 +77,13 @@
             // start with OSM maxZoom
             options.zoom = 19;
         }
-        // bounds = normalizeBounds(bounds);
 
-        return getCoverTile(bounds, options.zoom);
+        let tile = getCoverTile(new Bound(bound), options.zoom);
+
+        if (options.toUrl) {
+            return tile2Url(tile, options);
+        }
+
+        return tile;
     };
 }());
