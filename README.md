@@ -1,5 +1,5 @@
 # bound2osmtile
-This package converts a passed WGS84 bounds object to the closest OSM slippy tile request values.
+This package converts passed WGS84 bounds to the closest OSM slippy tile request values.
 This is done by following the suggestions in the 
 [OSM Wiki](https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames).
 
@@ -29,7 +29,7 @@ bound2tile([L.latLng(48.1354432, 11.6037082), L.latLng(48.123412, 11.621389)]);
 bound2tile(L.latLngBounds([48.1354432, 11.6037082], [48.123412, 11.621389]));
 
 // GeoBounds
-bound2tile(new (require('geoobject-bounds'))([48.1354432, 11.6037082], [48.123412, 11.621389]));
+bound2tile(new (require('geobound-object'))([48.1354432, 11.6037082], [48.123412, 11.621389]));
 
 // output:
 // { 
