@@ -4,7 +4,7 @@
   "description": "convert wgs84 bounds to osm sloppy tile format",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node index.spec.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/anetz89/bound2osmtile/issues"
   },
-  "homepage": "https://github.com/anetz89/bound2osmtile#readme"
+  "homepage": "https://github.com/anetz89/bound2osmtile#readme",
+  "dependencies": {
+    "geobound-object": "^0.1.0"
+  }
 }

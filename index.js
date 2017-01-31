@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    var Bound = require('./bound.js');
+    var Bound = require('geobound-object');
 
     function long2tile(lon, zoom) {
         return (Math.floor((lon + 180) / 360 * Math.pow(2, zoom)));

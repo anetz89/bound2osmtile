@@ -28,6 +28,9 @@ bound2tile([L.latLng(48.1354432, 11.6037082), L.latLng(48.123412, 11.621389)]);
 // L.LatLngBounds
 bound2tile(L.latLngBounds([48.1354432, 11.6037082], [48.123412, 11.621389]));
 
+// GeoBounds
+bound2tile(new (require('geoobject-bounds'))([48.1354432, 11.6037082], [48.123412, 11.621389]));
+
 // output:
 // { 
 //     valid: true, 

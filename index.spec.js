@@ -41,4 +41,6 @@
     });
 
     expect(result, 'http://my.own.com/12/2180/1421.json');
+
+    console.log('OK');
 }());
